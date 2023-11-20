@@ -20,11 +20,14 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
   @Column({ enum: Role, default: Role.Regular })
   role: Role;
+
+  @Column()
+  googleId: string;
 
   @JoinTable()
   @OneToMany((type) => ApiKey, (apiKey) => apiKey.user)
