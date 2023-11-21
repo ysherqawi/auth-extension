@@ -26,8 +26,14 @@ export class User {
   @Column({ enum: Role, default: Role.Regular })
   role: Role;
 
-  @Column()
+  @Column({ nullable: true })
   googleId: string;
+
+  @Column({ nullable: true })
+  tfaSecret: string;
+
+  @Column({ default: false })
+  isTfaEnabled: boolean;
 
   @JoinTable()
   @OneToMany((type) => ApiKey, (apiKey) => apiKey.user)
